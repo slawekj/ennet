@@ -1,0 +1,10 @@
+Package: ennet
+Type: Package
+Title: This package implements ENNET algorithm.
+Version: 1.0
+Date: 2013-05-01
+Author: Janusz Slawek <janusz.slawek@gmail.com>
+Maintainer: Janusz Slawek <janusz.slawek@gmail.com>
+Description: Comming soon...
+License: GPL-2
+LazyLoad: yes
