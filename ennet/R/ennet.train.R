@@ -1,4 +1,4 @@
-ennet.train <- function(X.train,Y.train,s_f=0.5,s_s=0.5,M.train=1000,nu=0.001) {
+ennet.train <- function(X.train,Y.train,s_f=0.3,s_s=1,M.train=5000,nu=0.001) {
   if (!is.matrix(X.train)) {
     stop("Error: X must be N-by-P matrix.")
   }
