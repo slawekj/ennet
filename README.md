@@ -4,7 +4,7 @@ ENNET algorithm
 This is an implementation of ENNET algorithm for Gene Regulatory Network inference from mRNA expression data, in form of an R package.
 
 Requirements:
-- R environment, the package was implemented and tested on R version 2.13.1.
+- R environment, the package was implemented and tested using R version 2.13.1.
 - foreach, plyr R packages preinstalled.
 - g++ compiler and standard libraries.
 
