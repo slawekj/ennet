@@ -10,6 +10,8 @@
 
 #include <vector>
 
+using namespace std;
+
 class Model {
 public:
 	Model(size_t M, size_t P) {
@@ -96,11 +98,11 @@ private:
 	size_t P;
 	double f0;
 	double nu;
-	std::vector<size_t> featSplitI;
-	std::vector<double> featSplitT;
-	std::vector<double> gamma_l;
-	std::vector<double> gamma_r;
-	std::vector<double> importance;
+	vector<size_t> featSplitI;
+	vector<double> featSplitT;
+	vector<double> gamma_l;
+	vector<double> gamma_r;
+	vector<double> importance;
 };
 
 #endif /* MODEL_H_ */

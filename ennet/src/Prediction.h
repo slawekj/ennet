@@ -10,6 +10,8 @@
 
 #include <vector>
 
+using namespace std;
+
 class Prediction {
 public:
 	Prediction(size_t M, size_t N) {
@@ -45,8 +47,8 @@ public:
 private:
 	size_t M;
 	size_t N;
-	std::vector<double> prediction;
-	std::vector<double> loss;
+	vector<double> prediction;
+	vector<double> loss;
 };
 
 #endif /* RESULT_H_ */

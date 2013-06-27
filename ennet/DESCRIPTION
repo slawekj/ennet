@@ -8,3 +8,4 @@ Maintainer: Janusz Slawek <janusz.slawek@gmail.com>
 Description: Comming soon...
 License: GPL-2
 LazyLoad: yes
+Depends: foreach, plyr

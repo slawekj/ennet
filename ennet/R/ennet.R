@@ -1,4 +1,4 @@
-function (Ex, Pt, Tm, Tf, delay = 1, ntree = 5000, shrinkage = 0.001, 
+ennet <- function (Ex, Pt, Tm, Tf, delay = 1, ntree = 5000, shrinkage = 0.001, 
           bag.fraction = 1, col.fraction = 0.3, scale = TRUE, center = TRUE) {
   N <- ncol(Ex[[1]])
   E.all <- NULL
