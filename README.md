@@ -5,7 +5,7 @@ This is an implementation of ENNET algorithm for Gene Regulatory Network inferen
 
 Requirements:
 - R environment, the package was implemented and tested using R version 2.13.1.
-- foreach, plyr R packages preinstalled.
+- foreach, plyr R packages installed.
 - g++ compiler and standard libraries.
 
 
