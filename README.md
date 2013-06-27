@@ -10,8 +10,8 @@ Requirements:
 
 
 Installation:
-1. Download and unpack the source code to the installation folder.
-2. Install the package by invoking the following command in the installation folder:
+- Download and unpack the source code to the installation folder.
+- Install the package by invoking the following command in the installation folder:
     $R CMD build ennet && R CMD INSTALL ennet
 
 Usage:
