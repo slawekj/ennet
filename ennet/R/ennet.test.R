@@ -1,4 +1,4 @@
-ennet.test <- function(model,X.test,Y.test,M.test) {
+ennet.test = function(model,X.test,Y.test,M.test) {
   if (!is.matrix(X.test)) {
     stop("Error: X.test must be N-by-P matrix")
   }
