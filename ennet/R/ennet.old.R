@@ -1,5 +1,5 @@
-ennet = function (Ex, Pt, Tm, Tf, delay = 1, ntree = 5000, shrinkage = 0.001, 
-                  bag.fraction = 1, col.fraction = 0.3, scale = TRUE, center = TRUE) {
+ennet.old = function (Ex, Pt, Tm, Tf, delay = 1, ntree = 5000, shrinkage = 0.001,
+                      bag.fraction = 1, col.fraction = 0.3, scale = TRUE, center = TRUE) {
   N      = ncol(Ex[[1]])
   E.all  = NULL
   P.all  = NULL
@@ -10,8 +10,7 @@ ennet = function (Ex, Pt, Tm, Tf, delay = 1, ntree = 5000, shrinkage = 0.001,
     Ex[[i]] <- scale(Ex[[i]], center = center, scale = scale)
     E.all <- rbind(E.all, Ex[[i]])
     P.all <- rbind(P.all, Pt[[i]])
-    T.all <- rbind(T.all, matrix(Tm[[i]], length(Tm[[i]]), 
-                                 1))
+    T.all <- rbind(T.all, matrix(Tm[[i]], length(Tm[[i]]),1))
     if (sum(Tm[[i]]) > 0) {
       Tm.rep.count <- Tm.rep.count + 1
       Tm.rep <- rbind(Tm.rep, matrix(Tm.rep.count, nrow(Ex[[i]]), 
