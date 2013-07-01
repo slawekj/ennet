@@ -1,12 +1,13 @@
 ennet = function (E      = matrix(rnorm(10000),100,100),
                   K      = matrix(0,nrow(E),ncol(E)),
-                  Tf     = rep(0,ncol(E)),
+                  Tf     = 1:ncol(E),
                   s_s    = 1,
                   s_f    = 0.3,
                   M      = 5000,
                   nu     = 0.001,
                   scale  = TRUE,
-                  center = TRUE) {
+                  center = TRUE,
+                  optimization.stage  = 2) {
   N = ncol(E)
   S = nrow(E)
   E = scale(E,scale=scale,center=center)
@@ -27,22 +28,28 @@ ennet = function (E      = matrix(rnorm(10000),100,100),
     result
   }
   
-  # first stage of re-evaluation
-  s  = apply(V,1,var)
-  S1 = matrix(rep(s,N),N,N)
-  V  = V * S1
-  
-  # second stage of re-evaluation
-  S2 = matrix(1,N,N)
-  for (i in which(colSums(K)>0 && colSums(K)<S)) {
-    for (j in 1:N) {
-      avg.ko   = mean(K[K[,i]==1,j])
-      avg.n.ko = mean(K[K[,i]==0,j])
-      std.dev  = sd(K[,j])
-      S2[i,j]  = abs(avg.ko-avg.n.ko)/std.dev
-    }
+  if (optimization.stage > 0) {
+    # first stage of re-evaluation
+    s  = apply(V,1,var)
+    S1 = matrix(rep(s,N),N,N)
+    V  = V * S1
   }
-  V = V * S2
+  
+  if (optimization.stage > 1) {
+    # second stage of re-evaluation
+    S2 = matrix(1,N,N)
+    ko.experiments = which(rowSums(K)==1 & apply(K,1,max)==1)
+    E.ko = E[ko.experiments,]
+    for (tf in Tf) {
+      for (target in 1:N) {
+        avg.ko   = mean(E.ko[K[ko.experiments,tf]==1,target])
+        avg.n.ko = mean(E.ko[K[ko.experiments,tf]==0,target])
+        std.dev  = sd(E.ko[,target])
+        S2[tf,target]  = abs(avg.ko-avg.n.ko)/std.dev
+      }
+    }
+    V = V * S2
+  }
   
   # prepare the final adjacency matrix
   colnames(V) = colnames(E)
