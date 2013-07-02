@@ -1,5 +1,5 @@
 /*
- * solver.cpp
+ * train_regression_stump.cpp
  *
  *  Created on: May 1, 2013
  *      Author: Janusz Slawek
