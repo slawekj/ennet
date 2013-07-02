@@ -1,5 +1,5 @@
 /*
- * solver.h
+ * regression_stump.h
  *
  *  Created on: May 1, 2013
  *      Author: Janusz Slawek
