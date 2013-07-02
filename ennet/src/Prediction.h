@@ -1,5 +1,5 @@
 /*
- * Result.h
+ * Prediction.h
  *
  *  Created on: May 14, 2013
  *      Author: Janusz Slawek
