@@ -1,5 +1,5 @@
 /*
- * ennet_R.cpp
+ * train_regression_stump_R.cpp
  *
  *  Created on: May 3, 2013
  *      Author: Janusz Slawek
