@@ -37,19 +37,22 @@ ennet = function (E      = matrix(rnorm(10000),100,100),
   
   if (optimization.stage > 1) {
     # second stage of re-evaluation
-    S2 = matrix(1,N,N)
     ko.experiments = which(rowSums(K)==1 & apply(K,1,max)==1)
-    E.ko = E[ko.experiments,]
-    for (tf in Tf) {
-      for (target in 1:N) {
-        avg.ko   = mean(E.ko[K[ko.experiments,tf]==1,target])
-        avg.n.ko = mean(E.ko[K[ko.experiments,tf]==0,target])
-        std.dev  = sd(E.ko[,target])
-        S2[tf,target]  = abs(avg.ko-avg.n.ko)/std.dev
+    if (length(ko.experiments)>1) {
+      S2 = matrix(1,N,N)
+      E.ko = E[ko.experiments,]
+      for (tf in Tf) {
+        for (target in 1:N) {
+          avg.ko   = mean(E.ko[K[ko.experiments,tf]==1,target])
+          avg.n.ko = mean(E.ko[K[ko.experiments,tf]==0,target])
+          std.dev  = sd(E.ko[,target])
+          if (std.dev>0) {
+            S2[tf,target]  = abs(avg.ko-avg.n.ko)/std.dev
+          }
+        }
       }
-    }
-    V = V * S2
-  }
+      V = V * S2
+    }}
   
   # prepare the final adjacency matrix
   colnames(V) = colnames(E)
