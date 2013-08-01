@@ -5,8 +5,8 @@
  *      Author: Janusz Slawek
  */
 
-#ifndef RESULT_H_
-#define RESULT_H_
+#ifndef PREDICTION_H_
+#define PREDICTION_H_
 
 #include <vector>
 
@@ -51,4 +51,4 @@ private:
 	vector<double> loss;
 };
 
-#endif /* RESULT_H_ */
+#endif /* PREDICTION_H_ */
