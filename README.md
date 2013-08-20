@@ -5,13 +5,18 @@ This is an implementation of ENNET algorithm for Gene Regulatory Network inferen
 
 Requirements:
 - R environment, the package was implemented and tested using R version 2.13.1.
-- foreach, plyr R packages installed.
+- "foreach", "plyr" R packages installed. In order to install the packages go to R console, and type:
+
+\>install.packages("foreach")
+
+\>install.packages("plyr")
+
 - g++ compiler and standard libraries.
 
 
 Installation:
 - Download and unpack the source code to the download folder.
-- Install the package by invoking the following command in the installation folder, e.g. a folder containing README.md file:
+- Install the package by invoking the following command in the installation folder, e.g. a folder containing README.md file, from command line:
 
 $R CMD build ennet && R CMD INSTALL ennet
 
