@@ -5,7 +5,7 @@ Version: 1.0
 Date: 2013-05-01
 Author: Janusz Slawek <janusz.slawek@gmail.com>
 Maintainer: Janusz Slawek <janusz.slawek@gmail.com>
-Description: Comming soon...
-License: GPL-2
+Description: This is an implementation of ENNET algorithm for Gene Regulatory Network inference from mRNA expression data, in form of an R package.
+License: GPL-3
 LazyLoad: yes
 Depends: foreach, plyr
