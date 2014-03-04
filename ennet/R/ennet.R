@@ -26,9 +26,10 @@ ennet = function (E      = matrix(rnorm(10000),100,100),
                   center = TRUE,
                   optimization.stage  = 2) {
   N = ncol(E)
+  P = length(Tf)
   S = nrow(E)
   E = scale(E,scale=scale,center=center)
-  V = matrix(0, N, N)
+  V = matrix(0, P, N)
   V = foreach(i = 1:N, .inorder = TRUE, .combine = "cbind") %dopar% {
     predictedI  = i
     predictorsI = setdiff(Tf, predictedI)
@@ -40,39 +41,20 @@ ennet = function (E      = matrix(rnorm(10000),100,100),
                         nu = nu,
                         s_s = s_s,
                         s_f = s_f)
-    result = rep(0, N)
-    result[predictorsI] = model$importance
+    result = rep(0, P)
+    result[which(!is.na(match(Tf,predictorsI)))]] = model$importance
     result
   }
   
   if (optimization.stage > 0) {
     # first stage of re-evaluation
     s  = apply(V,1,var)
-    S1 = matrix(rep(s,N),N,N)
-    V  = V * S1
+    S  = matrix(rep(s,N),P,N)
+    V  = V * S
   }
-  
-  if (optimization.stage > 1) {
-    # second stage of re-evaluation
-    ko.experiments = which(rowSums(K)==1 & apply(K,1,max)==1)
-    if (length(ko.experiments)>1) {
-      S2 = matrix(1,N,N)
-      E.ko = E[ko.experiments,]
-      for (tf in Tf) {
-        for (target in 1:N) {
-          avg.ko   = mean(E.ko[K[ko.experiments,tf]==1,target])
-          avg.n.ko = mean(E.ko[K[ko.experiments,tf]==0,target])
-          std.dev  = sd(E.ko[,target])
-          if (std.dev>0) {
-            S2[tf,target]  = abs(avg.ko-avg.n.ko)/std.dev
-          }
-        }
-      }
-      V = V * S2
-    }}
   
   # prepare the final adjacency matrix
   colnames(V) = colnames(E)
-  rownames(V) = colnames(E)
+  rownames(V) = colnames(E)[Tf]
   return(V)
 }
